@@ -1,0 +1,41 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ parent() }} Catégories{% endblock %}
+
+{% block body %}
+<div class="container-fluid">
+    <div class="row justify-content-center">
+        <div class="col-10 text-primary">
+            <h1 class="text-center text-primary mt-4 pt-4 display-1 fw-bold">CATÉGORIES</h1>
+        </div>
+    </div>
+
+    <div class="row justify-content-center">
+        <div class="col-8">
+            <h2 class="mt-5">Ajouter une nouvelle catégorie</h2>
+
+            {{ form_start(form) }}
+                {{ form_row(form.title) }}
+                <button type="submit" class="btn btn-success mt-2">Enregistrer</button>
+            {{ form_end(form) }}
+
+            {% for message in app.flashes('notice') %}
+                <div class="alert alert-success mt-3">{{ message }}</div>
+            {% endfor %}
+        </div>
+    </div>
+
+    <div class="row justify-content-center mt-5">
+        <div class="col-8">
+            <h2 class="mt-5">Liste des catégories</h2>
+            <ul class="list-group">
+                {% for category in categories %}
+                    <li class="list-group-item">{{ category.title }}</li>
+                {% else %}
+                    <li class="list-group-item">Aucune catégorie trouvée.</li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+</div>
+{% endblock %}
